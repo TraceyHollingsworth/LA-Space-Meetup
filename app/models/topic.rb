@@ -1,3 +1,3 @@
 class Topic < ActiveRecord::Base
-  has_many :meetups
+  belongs_to :meetups
 end
