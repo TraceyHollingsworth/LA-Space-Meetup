@@ -1,0 +1,3 @@
+Learning Objectives
+* Effectively structure data to minimize duplication.
+* Model connections between information using one-to-many and many-to-many relationships.
