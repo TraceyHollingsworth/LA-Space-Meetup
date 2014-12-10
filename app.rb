@@ -34,12 +34,29 @@ get '/' do
   erb :index
 end
 
+get '/meetups/new' do
+  erb :new
+end
+
 get '/meetups/:id' do
   @id = params[:id]
   @meetup = Meetup.find(@id)
   erb :show
 end
 
+post '/' do
+  if !signed_in?
+    flash[:notice] = "You must be signed in!"
+    redirect '/'
+  elsif
+    @new = Meetup.create(params[:meetup])
+    flash.now[:notice] = "You've successfully created a meetup!"
+    @new.save
+    redirect "/meetups/#{@new.id}"
+  else
+    redirect '/new'
+  end
+end
 
 get '/auth/github/callback' do
   auth = env['omniauth.auth']
